@@ -9,7 +9,7 @@ public class GradeConverterApp {
 		String response = "y";
 		
 		while (response.equalsIgnoreCase("y")) {
-		
+			
 			System.out.print("Enter numerical grade: ");
 			int numGrade = sc.nextInt();
 			String grade = "";
