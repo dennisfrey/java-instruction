@@ -11,7 +11,7 @@ public class CommonDivisorCalcApp {
 		while (choice.equalsIgnoreCase("y")) {
 			
 			// Prompt for first and second numbers
-			System.out.print("Enter first number: ");
+			System.out.print("\nEnter first number: ");
 			int firstNumber = sc.nextInt();
 			
 			System.out.print("Enter second number: ");
@@ -24,14 +24,14 @@ public class CommonDivisorCalcApp {
 				while (secondNumber>=firstNumber) {
 					secondNumber = secondNumber - firstNumber;	
 				}
-			//swap values after exiting nested while
-			int tempNumber = firstNumber;
-			firstNumber = secondNumber;
-			secondNumber = tempNumber;		
+				//swap values after exiting nested while
+				int tempNumber = firstNumber;
+				firstNumber = secondNumber;
+				secondNumber = tempNumber;		
 			}
 			
 			System.out.println("Greatest common divisor: " + secondNumber);				
-			System.out.print("Continue? (y/n): ");
+			System.out.print("\nContinue? (y/n): ");
 			choice = sc.next();
 			
 		}
