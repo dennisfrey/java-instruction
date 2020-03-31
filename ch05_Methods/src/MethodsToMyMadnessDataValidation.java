@@ -31,7 +31,7 @@ public class MethodsToMyMadnessDataValidation {
 		System.out.println("Bye");
 	}
 
-	private static int getValidInt(String prompt, Scanner sc) {
+	private static int getInt(String prompt, Scanner sc) {
 
 		int i = 0;
 		while (true) {
