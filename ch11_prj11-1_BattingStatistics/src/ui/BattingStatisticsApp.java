@@ -9,6 +9,9 @@ public class BattingStatisticsApp {
 	public static void main(String[] args) {
 
 		String choice = "y";
+		NumberFormat nf = NumberFormat.getInstance();
+		nf.setMaximumFractionDigits(3);
+		nf.setMinimumFractionDigits(3);
 
 		System.out.println("Welcome to the Batting Average Calculator");
 
@@ -37,10 +40,6 @@ public class BattingStatisticsApp {
 			// Calculate Batting Average and Slugging Percentage
 			double battingAvg = sumHits / atBats;
 			double sluggingPerc = sumBases / atBats;
-
-			NumberFormat nf = NumberFormat.getInstance();
-			nf.setMaximumFractionDigits(3);
-			nf.setMinimumFractionDigits(3);
 
 			System.out.println("\nBatting average: " + nf.format(battingAvg));
 			System.out.println("Slugging percent: " + nf.format(sluggingPerc));
