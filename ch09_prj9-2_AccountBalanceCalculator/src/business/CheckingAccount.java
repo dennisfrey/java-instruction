@@ -1,3 +1,4 @@
+package business;
 
 public class CheckingAccount extends Account {
 
@@ -20,8 +21,8 @@ public class CheckingAccount extends Account {
 		this.fee = fee;
 	}
 	
-	public double subtractFee() {
-		return getBalance() - fee;
+	public void subtractFee() {
+		balance -= fee;
 	}
 
 	@Override

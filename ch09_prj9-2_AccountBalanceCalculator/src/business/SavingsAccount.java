@@ -1,3 +1,4 @@
+package business;
 
 public class SavingsAccount extends Account {
 
@@ -37,7 +38,9 @@ public class SavingsAccount extends Account {
 		this.interestPayment = interestPayment;
 	}
 
-	
+	public void applyPayment() {
+		balance += getInterestPayment();
+	}
 
 	@Override
 	public String toString() {

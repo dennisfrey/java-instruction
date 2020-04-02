@@ -1,4 +1,10 @@
+package ui;
 import java.text.NumberFormat;
+
+import business.Account;
+import business.CheckingAccount;
+import business.SavingsAccount;
+import util.Console;
 
 public class AccountBalanceApp {
 
@@ -9,20 +15,24 @@ public class AccountBalanceApp {
 		double checkingBalance = 1000.00;
 		double savingsBalance = 1000.00;
 		double fee = 1.00;
-		double monthlyIntRate = .002; // 2.4% annual converted into monthly
+		double monthlyIntRate = .01; // 1% per month
 		NumberFormat cf = NumberFormat.getCurrencyInstance();
 
 		CheckingAccount c = new CheckingAccount(checkingBalance, fee);
 		SavingsAccount s = new SavingsAccount(savingsBalance, monthlyIntRate);
 
-		System.out.println("Enter the transactions for the month\n");
+		System.out.println("Starting Balances");
+		System.out.println("Checking: " + cf.format(c.getBalance()));
+		System.out.println("Savings: " + cf.format(s.getBalance()));
+
+		System.out.println("\nEnter the transactions for the month");
 
 		while (choice.equalsIgnoreCase("y")) {
 
-			String action = Console.getString("Withdrawal or deposit? (w/d): ", "w", "d");
+			String action = Console.getString("\nWithdrawal or deposit? (w/d): ", "w", "d");
 			String accountType = Console.getString("Checking or savings? (c/s): ", "c", "s");
 			double amount;
-			
+
 			if (accountType.equalsIgnoreCase("c")) {
 				
 				if (action.equalsIgnoreCase("w")) {
@@ -43,20 +53,41 @@ public class AccountBalanceApp {
 				}
 			}
 
+//			//Sean's approach
+//			Account a;
+//			
+//			if (accountType.equalsIgnoreCase("c")) {
+//
+//				a = c;
+//			} else {
+//				
+//				a = s;
+//			}	
+//
+//			if (action.equalsIgnoreCase("w")) {
+//				amount = Console.getDouble("Amount?: ", 0, a.getBalance() + .01);
+//				a.withdraw(amount);
+//				
+//
+//			} else {
+//				amount = Console.getDouble("Amount?: ", 0, Double.POSITIVE_INFINITY);
+//				a.deposit(amount);
+//			}
+
 			choice = Console.getString("\nContinue? (y/n): ", "y", "n");
-			
+
 		}
 
-		
-				
 		System.out.println("\nMonthly Payments and Fees");
 		System.out.println("Checking fee: " + cf.format(fee));
 		System.out.println("Savings interest payment: " + cf.format(s.getInterestPayment()));
-		
+
+		c.subtractFee();
+		s.applyPayment();
 		System.out.println("\nFinal Balances");
-		System.out.println("Checking: " + cf.format(c.subtractFee()));
-		System.out.println("Savings: " + cf.format(s.getBalance() + s.getInterestPayment()));
-		
+		System.out.println("Checking: " + cf.format(c.getBalance()));
+		System.out.println("Savings: " + cf.format(s.getBalance()));
+
 		System.out.println("\nGoodbye");
 
 	}
