@@ -11,7 +11,7 @@ public class WizardInventoryApp {
 		System.out.println("COMMAND MENU\n" + "show - Show all items\n" + "grab - Grab an item\n"
 				+ "edit - Edit an item\n" + "drop - Drop an item\n" + "exit - Exit program");
 
-		ArrayList<String> inventory = new ArrayList<>(4);
+		ArrayList<String> inventory = new ArrayList<>();
 
 		// set initial inventory
 		inventory.add("wooden staff");
@@ -36,7 +36,9 @@ public class WizardInventoryApp {
 			} else if (command.equalsIgnoreCase("grab")) {
 
 				if (inventory.size() < 4) {
+					
 					inventory.add(Console.getString("Name: "));
+					System.out.println((inventory.get(inventory.size() - 1)) + " was added");
 
 				} else {
 					System.out.println("You can't carry any more items. Drop something first.");
