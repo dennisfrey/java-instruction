@@ -11,9 +11,8 @@ public class PetStoreApp {
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to the PetStoreApp!");
-		System.out.println("\nThis application will manage a list of pets. " +
-							"\nYou can add pets to the inventory," + 
-							"\nand remove them when they get adopted.\n");
+		System.out.println("\nThis application will manage a list of pets. " + "\nYou can add pets to the inventory,"
+				+ "\nand remove them when they get adopted.\n");
 
 		String command = "";
 
@@ -78,16 +77,16 @@ public class PetStoreApp {
 			System.out.println("Inventory is empty");
 		}
 	}
-	
+
 	public static void addPet() {
 
 		Pet pet = new Pet();
 		int id = 0;
 		boolean success;
-		
+
 		System.out.println("\nAdd a pet");
 		System.out.println("---------");
-		
+
 		// while loop is to prevent adding duplicate id
 		while (true) {
 			boolean inUse = false;
@@ -110,7 +109,7 @@ public class PetStoreApp {
 		pet.setName(Console.getString("Name? ", true));
 		pet.setAge(Console.getInt("Age? ", 0, (int) Double.POSITIVE_INFINITY));
 		success = pets.add(pet);
-		
+
 		// confirmation message
 		if (success) {
 			System.out.println("\n" + pet.getName() + " (" + pet.getSpecies() + ") was added to the inventory.");
@@ -130,7 +129,7 @@ public class PetStoreApp {
 
 		// check first for pets in inventory and display message if empty
 		if (pets.size() > 0) {
-			
+
 			// get valid id for a pet in the inventory
 			while (pet == null) {
 				int id = Console.getInt("Id of pet to adopt? ");
@@ -146,11 +145,11 @@ public class PetStoreApp {
 
 			}
 			// Saving the name to use in confirmation message
-			petName = pet.getName(); 
-			
+			petName = pet.getName();
+
 			// Remove adopted pet
 			success = pets.remove(pet);
-			
+
 			// confirmation message
 			if (success) {
 				System.out.println("\n" + petName + " (" + pet.getSpecies() + ") has been adopted.");
