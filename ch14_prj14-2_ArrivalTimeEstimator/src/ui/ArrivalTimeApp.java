@@ -41,11 +41,11 @@ public class ArrivalTimeApp {
 		System.out.println("\nBye!");
 	}
 
-	public static LocalDate setDate(String input) {
-		LocalDate dt = LocalDate.new();
-		
-		
-		
-		
-	}
+//	public static LocalDate setDate(String input) {
+//		LocalDate dt = LocalDate.new();
+//		
+//		
+//		
+//		
+//	}
 }
