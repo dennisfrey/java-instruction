@@ -4,7 +4,7 @@ package ui;
 
 import java.util.ArrayList;
 
-import business.CountryIO;
+import db.CountriesIO;
 import util.Console;
 
 public class CountriesApp {
@@ -17,7 +17,7 @@ public class CountriesApp {
 							"3 - Exit");
 		
 		int choice = 0;
-		CountryIO cio = new CountryIO();
+		CountriesIO cio = new CountriesIO();
 		ArrayList<String> countries = new ArrayList<>();
 		
 		while(choice!=3) {
@@ -32,6 +32,7 @@ public class CountriesApp {
 						
 			} else if (choice == 2) {
 				String country = Console.getString("\nEnter country: ", true);
+				countries = cio.getCountries();
 				countries.add(country);
 				boolean result = cio.saveCountries(countries);
 				if (result) {

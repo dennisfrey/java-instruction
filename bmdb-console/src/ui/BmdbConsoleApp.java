@@ -5,12 +5,14 @@ import java.util.List;
 import business.Movie;
 import db.DAO;
 import db.MovieList;
+import db.MovieTextFile;
 import util.Console;
 
 public class BmdbConsoleApp {
 	
-	private static DAO<Movie> movieRepo = new MovieList();// Initialize database we created
-
+	//private static DAO<Movie> movieRepo = new MovieList();// Initialize database we created
+	private static DAO<Movie> movieRepo = new MovieTextFile(); //pointing to file instead of database
+	
 	public static void main(String[] args) {
 		// Welcome and initialization
 		System.out.println("Welcome to the BMDB Console App!!!");
