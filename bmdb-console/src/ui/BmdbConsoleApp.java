@@ -4,6 +4,7 @@ import java.util.List;
 
 import business.Movie;
 import db.DAO;
+import db.MovieDB;
 import db.MovieList;
 import db.MovieTextFile;
 import util.Console;
@@ -11,7 +12,8 @@ import util.Console;
 public class BmdbConsoleApp {
 	
 	//private static DAO<Movie> movieRepo = new MovieList();// Initialize database we created
-	private static DAO<Movie> movieRepo = new MovieTextFile(); //pointing to file instead of database
+	//private static DAO<Movie> movieRepo = new MovieTextFile(); //pointing to file instead of database
+	private static DAO<Movie> movieRepo = new MovieDB(); //point to MySQL database
 	
 	public static void main(String[] args) {
 		// Welcome and initialization
