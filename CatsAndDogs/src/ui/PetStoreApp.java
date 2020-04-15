@@ -2,7 +2,7 @@ package ui;
 
 import java.util.ArrayList;
 
-import db.Pet;
+import business.Pet;
 import util.Console;
 
 public class PetStoreApp {

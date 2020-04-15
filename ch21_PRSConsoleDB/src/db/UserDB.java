@@ -18,26 +18,43 @@ public class UserDB implements DAO<User> {
 		return conn;
 	}
 
+	public User login(String un, String pw) {
+		String sql = "SELECT ID, UserName, Password, FirstName, LastName, PhoneNumber, " + 
+					 "Email, IsReviewer, IsAdmin " +
+					 "FROM User " + 
+					 "WHERE UserName = ? AND Password = ?";
+		User u = null;
+		try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setString(1, un);
+			ps.setString(2, pw);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				u = getUserFromResultSet(rs);
+			} else {
+				
+				u = null;
+			}
+			rs.close();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return u;
+	}
+	
 	@Override
 	public User get(int id) {
-		String sql = "SELECT ID, UserName, Password, FirstName, LastName, PhoneNumber, " + "Email, IsReviewer, IsAdmin "
-				+ "FROM User " + "WHERE ID = ?";
+		String sql = "SELECT ID, UserName, Password, FirstName, LastName, PhoneNumber, " + 
+					 "Email, IsReviewer, IsAdmin " +
+					 "FROM User " + 
+					 "WHERE ID = ?";
 		User u = null;
 		try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				int userId = rs.getInt(1);
-				String un = rs.getString(2);
-				String pw = rs.getString(3);
-				String fn = rs.getString(4);
-				String ln = rs.getString(5);
-				String pn = rs.getString(6);
-				String e = rs.getString(7);
-				boolean r = rs.getBoolean(8);
-				boolean a = rs.getBoolean(9);
-				u = new User(userId, un, pw, fn, ln, pn, e, r, a);
-
+				u = getUserFromResultSet(rs);
 			} else {
 				rs.close();
 				u = null;
@@ -61,17 +78,7 @@ public class UserDB implements DAO<User> {
 
 			// while there is a row in the rs
 			while (rs.next()) {
-				// int id = rs.getInt("id"); //column name
-				int id = rs.getInt(1);
-				String un = rs.getString(2);
-				String pw = rs.getString(3);
-				String fn = rs.getString(4);
-				String ln = rs.getString(5);
-				String pn = rs.getString(6);
-				String e = rs.getString(7);
-				boolean r = rs.getBoolean(8);
-				boolean a = rs.getBoolean(9);
-				User u = new User(id, un, pw, fn, ln, pn, e, r, a); // create user object
+				User u = getUserFromResultSet(rs);
 				users.add(u); // add object to the list
 
 			}
@@ -84,6 +91,21 @@ public class UserDB implements DAO<User> {
 		return users;
 	}
 
+	
+	private User getUserFromResultSet(ResultSet rs) throws SQLException {
+		int id = rs.getInt(1);
+		String un = rs.getString(2);
+		String pw = rs.getString(3);
+		String fn = rs.getString(4);
+		String ln = rs.getString(5);
+		String pn = rs.getString(6);
+		String e = rs.getString(7);
+		boolean r = rs.getBoolean(8);
+		boolean a = rs.getBoolean(9);
+		User u = new User(id, un, pw, fn, ln, pn, e, r, a); // create user object
+		return u;
+	}
+	
 	@Override
 	public boolean add(User u) {
 		boolean success = false;
